@@ -9,14 +9,21 @@ namespace TEditor
     public class TEditorImplementation : BaseTEditor
     {
         public static ToolbarBuilder ToolbarBuilder = null;
-        public override Task<TEditorResponse> ShowTEditor(string html, ToolbarBuilder toolbarBuilder = null, bool autoFocusInput = false)
+        public static EventHandler<ToolbarBuilderEventArgs> ToolbarBuilderOnClick = null;
+
+        public override Task<TEditorResponse> ShowTEditor(string html, ToolbarBuilder toolbarBuilder = null, EventHandler<ToolbarBuilderEventArgs> toolbarBuilderOnClick = null, bool autoFocusInput = false)
         {
+            toolbarBuilder = new ToolbarBuilder();
+
             var result = new TaskCompletionSource<TEditorResponse>();
 
             var tActivity = new Intent(Application.Context, typeof(TEditorActivity));
             ToolbarBuilder = toolbarBuilder;
             if (ToolbarBuilder == null)
-                ToolbarBuilder = new ToolbarBuilder().AddAll();
+                ToolbarBuilder = new ToolbarBuilder();
+
+            ToolbarBuilderOnClick = toolbarBuilderOnClick;
+
             tActivity.PutExtra("HTMLString", html);
             tActivity.PutExtra("AutoFocusInput", autoFocusInput);
             tActivity.SetFlags(ActivityFlags.NewTask);

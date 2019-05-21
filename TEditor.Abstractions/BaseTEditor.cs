@@ -5,7 +5,7 @@ namespace TEditor.Abstractions
 {
     public abstract class BaseTEditor : ITEditor, IDisposable
     {
-        public abstract Task<TEditorResponse> ShowTEditor(string html, ToolbarBuilder toolbarBuilder = null, bool autoFocusInput = false);
+        public abstract Task<TEditorResponse> ShowTEditor(string html, ToolbarBuilder toolbarBuilder = null, EventHandler<ToolbarBuilderEventArgs> toolbarBuilderOnClick = null, bool autoFocusInput = false);
 
         /// <summary>
         /// Dispose of class and parent classes

@@ -71,15 +71,13 @@ namespace TEditor
 
         public void BuildToolbar()
         {
-            ToolbarBuilder builder = TEditorImplementation.ToolbarBuilder;
-            if (builder == null)
-                builder = new ToolbarBuilder().AddAll();
 
-            foreach (var item in builder)
+            foreach (var item in TEditorImplementation.ToolbarBuilder)
             {
                 ImageButton imagebutton = new ImageButton(this);
                 imagebutton.Click += (sender, e) =>
                 {
+                    TEditorImplementation.ToolbarBuilderOnClick?.Invoke(_editorWebView.RichTextEditor, new ToolbarBuilderEventArgs() { Action = item.Action });
                     item.ClickFunc.Invoke(_editorWebView.RichTextEditor);
                 };
                 string imagename = item.ImagePath.Split('.')[0];
@@ -87,11 +85,14 @@ namespace TEditor
                 imagebutton.SetImageResource(resourceId);
                 var toolbarItems = FindViewById<LinearLayout>(Resource.Id.ToolbarItemsLayout);
                 toolbarItems.AddView(imagebutton);
-            }
+            }     
         }
 
         public void HandleSoftKeyboardShwon(bool shown, int newHeight)
         {
+            if (TEditorImplementation.ToolbarBuilder.Count == 0)
+                return;
+
             if (shown)
             {
                 _toolbarLayout.Visibility = Android.Views.ViewStates.Visible;
@@ -110,7 +111,6 @@ namespace TEditor
                 {
                     _toolbarLayout.Visibility = Android.Views.ViewStates.Invisible;
                     _editorWebView.LayoutParameters = new LinearLayout.LayoutParams(-1, -1);
-                    ;
                 }
             }
         }

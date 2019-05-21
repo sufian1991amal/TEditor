@@ -99,7 +99,6 @@
   </ItemGroup>
   <Import Project="..\PopColorPicker.iOS.Shared\PopColorPicker.iOS.Shared.projitems" Label="Shared" Condition="Exists('..\PopColorPicker.iOS.Shared\PopColorPicker.iOS.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup />
   <ItemGroup>
     <BundleResource Include="Resources\ZSSbgcolor.png" />
     <BundleResource Include="Resources\ZSSbgcolor%402x.png" />
@@ -207,5 +206,17 @@
       <Project>{A3FF38D4-3875-422C-B6BA-6720DA5E54BE}</Project>
       <Name>TEditor.Abstractions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hashtag%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\email%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hashtag.png" />
   </ItemGroup>
 </Project>

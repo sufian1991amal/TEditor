@@ -37,6 +37,8 @@ namespace TEditor.Abstractions
 
         public ToolbarBuilder AddAll()
         {
+            AddMentioning();
+            AddAttachment();
             AddStandard();
             AddSubscript();
             AddSuperscript();
@@ -56,11 +58,42 @@ namespace TEditor.Abstractions
 
         #region Add functions
 
+        public ToolbarBuilder AddMentioning(string imagePath = null)
+        {
+            AddOnce(new TEditorToolbarItem
+            {
+                ImagePath = string.IsNullOrEmpty(imagePath) ? "email.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Mentioning,
+                Label = "mentioning",
+                ClickFunc = (input) =>
+                {
+                    return string.Empty;
+                }
+            });
+            return this;
+        }
+
+        public ToolbarBuilder AddAttachment(string imagePath = null)
+        {
+            AddOnce(new TEditorToolbarItem
+            {
+                ImagePath = string.IsNullOrEmpty(imagePath) ? "hashtag.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Attachment,
+                Label = "attachment",
+                ClickFunc = (input) =>
+                {
+                    return string.Empty;
+                }
+            });
+            return this;
+        }
+
         public ToolbarBuilder AddBold(string imagePath = null)
         {
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSbold.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Bold,
                 Label = "bold",
                 ClickFunc = (input) =>
                 {
@@ -77,6 +110,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSitalic.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Italic,
                 Label = "italic",
                 ClickFunc = (input) =>
                 {
@@ -93,6 +127,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSsubscript.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.SubScript,
                 Label = "subscript",
                 ClickFunc = (input) =>
                 {
@@ -109,6 +144,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSsuperscript.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.SuperScript,
                 Label = "superscript",
                 ClickFunc = (input) =>
                 {
@@ -125,6 +161,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSstrikethrough.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.StrikeThrough,
                 Label = "strikethrough",
                 ClickFunc = (input) =>
                 {
@@ -141,6 +178,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSunderline.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.UnderLine,
                 Label = "underline",
                 ClickFunc = (input) =>
                 {
@@ -157,6 +195,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSclearstyle.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.ClearStyle,
                 Label = "clearstyle",
                 ClickFunc = (input) =>
                 {
@@ -173,6 +212,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSleftjustify.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.LeftJustify,
                 Label = "leftjustify",
                 ClickFunc = (input) =>
                 {
@@ -189,6 +229,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSScenterjustify.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.CenterJustify,
                 Label = "centerjustify",
                 ClickFunc = (input) =>
                 {
@@ -205,6 +246,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSrightjustify.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.RightJustify,
                 Label = "rightjustify",
                 ClickFunc = (input) =>
                 {
@@ -221,6 +263,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSforcejustify.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.ForceJustify,
                 Label = "forcejustify",
                 ClickFunc = (input) =>
                 {
@@ -237,6 +280,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh1.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H1,
                 Label = "h1",
                 ClickFunc = (input) =>
                 {
@@ -253,6 +297,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh2.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H2,
                 Label = "h2",
                 ClickFunc = (input) =>
                 {
@@ -269,6 +314,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh3.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H3,
                 Label = "h3",
                 ClickFunc = (input) =>
                 {
@@ -285,6 +331,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh4.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H4,
                 Label = "h4",
                 ClickFunc = (input) =>
                 {
@@ -301,6 +348,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh5.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H5,
                 Label = "h5",
                 ClickFunc = (input) =>
                 {
@@ -317,6 +365,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSh6.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.H6,
                 Label = "h6",
                 ClickFunc = (input) =>
                 {
@@ -333,6 +382,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSunorderedlist.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.UnorderedList,
                 Label = "unorderedlist",
                 ClickFunc = (input) =>
                 {
@@ -349,6 +399,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSorderedlist.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.OrderedList,
                 Label = "orderedlist",
                 ClickFunc = (input) =>
                 {
@@ -365,6 +416,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSShorizontalrule.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.HorizontalRule,
                 Label = "horizontalrule",
                 ClickFunc = (input) =>
                 {
@@ -381,6 +433,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSindent.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Indent,
                 Label = "indent",
                 ClickFunc = (input) =>
                 {
@@ -397,6 +450,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSoutdent.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Outdent,
                 Label = "outdent",
                 ClickFunc = (input) =>
                 {
@@ -413,6 +467,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSquicklink.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.QuickLink,
                 Label = "quicklink",
                 ClickFunc = (input) =>
                 {
@@ -429,6 +484,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSundo.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Undo,
                 Label = "undo",
                 ClickFunc = (input) =>
                 {
@@ -445,6 +501,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSredo.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Redo,
                 Label = "redo",
                 ClickFunc = (input) =>
                 {
@@ -461,6 +518,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSSparagraph.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.Paragraph,
                 Label = "paragraph",
                 ClickFunc = (input) =>
                 {
@@ -476,6 +534,7 @@ namespace TEditor.Abstractions
             AddOnce(new TEditorToolbarItem
             {
                 ImagePath = string.IsNullOrEmpty(imagePath) ? "ZSStextcolor.png" : imagePath,
+                Action = TEditorToolbarItem.EnumAction.TextColor,
                 Label = "textcolor",
                 ClickFunc = (input) =>
                 {
@@ -499,7 +558,7 @@ namespace TEditor.Abstractions
                 this.Add(item);
                 return;
             }
-            var iteminlist = this.FirstOrDefault(t => t.Label == item.Label);
+            var iteminlist = this.FirstOrDefault(t => t.Action == item.Action);
             if (iteminlist == null)
                 this.Add(item);
         }
@@ -507,12 +566,46 @@ namespace TEditor.Abstractions
 
     public class TEditorToolbarItem
     {
+        public EnumAction Action { get; set; }
+
         public string ImagePath { get; set; }
 
         public string Label { get; set; }
 
         internal Func<ITEditorAPI, string> ClickFunc { get; set; }
 
+        public enum EnumAction
+        {
+            Mentioning,
+            Attachment,
+            Bold,
+            Italic,
+            SubScript,
+            SuperScript,
+            StrikeThrough,
+            UnderLine,
+            ClearStyle,
+            LeftJustify,
+            CenterJustify,
+            RightJustify,
+            ForceJustify,
+            H1,
+            H2,
+            H3,
+            H4,
+            H5,
+            H6,
+            UnorderedList,
+            OrderedList,
+            HorizontalRule,
+            Indent,
+            Outdent,
+            QuickLink,
+            Undo,
+            Redo,
+            Paragraph,
+            TextColor
+        }
     }
 
 }
