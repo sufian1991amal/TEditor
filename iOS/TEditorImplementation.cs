@@ -72,7 +72,7 @@ namespace TEditor
             var root = UIApplication.SharedApplication.KeyWindow.RootViewController;
             var window = UIApplication.SharedApplication.Windows;
 
-            var rootWindow = window?.LastOrDefault()?.RootViewController?.ModalViewController;
+            var rootWindow = window?.FirstOrDefault()?.RootViewController?.ModalViewController;
             if (rootWindow != null)
             {
                 nav = GetNavController(rootWindow);
