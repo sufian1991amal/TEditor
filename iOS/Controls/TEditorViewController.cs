@@ -101,6 +101,7 @@ namespace TEditor
                         contentView = subview;
                     }
                 }
+                InputAssistantItem.AllowsHidingShortcuts = false;
                 InputAssistantItem.LeadingBarButtonGroups = new[] { new UIBarButtonItemGroup(_uiToolbarItems.ToArray(), null) };
             }
         }
