@@ -46,7 +46,7 @@ namespace TEditor
             {
                 // assume all soft keyboards are at least 128 pixels high
                 // screenHeight - height means that when user long click the editor past and copy menu will be shown, it is the height of menu
-                onKeyboardShown.Invoke((diff > 128) && VisibleHeight != 0, VisibleHeight - (screenHeight - height));
+                onKeyboardShown.Invoke((diff > 128) && VisibleHeight != 0, VisibleHeight);
             }
             base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
         }

@@ -2,49 +2,45 @@
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.OS;
+using Android.Widget;
 using TEditor.Abstractions;
+using TEditor.Controls;
 
 namespace TEditor
 {
     public class TEditorImplementation : BaseTEditor
     {
-        public static ToolbarBuilder ToolbarBuilder = null;
-        public static EventHandler<ToolbarBuilderEventArgs> ToolbarBuilderOnClick = null;
 
+        private FrameLayout DecoreView => (FrameLayout)(MainActivity).Window.DecorView;
+        public static Bundle Bundle { get; set; }
+        public static Activity MainActivity { get; set; }
+
+        public static void SetBundel(Bundle bundle, Activity mainActivity)
+        {
+            Bundle = bundle;
+            MainActivity = mainActivity;
+        }
         public override Task<TEditorResponse> ShowTEditor(string html, ToolbarBuilder toolbarBuilder = null, EventHandler<ToolbarBuilderEventArgs> toolbarBuilderOnClick = null, bool autoFocusInput = false)
         {
-            toolbarBuilder = new ToolbarBuilder();
-
             var result = new TaskCompletionSource<TEditorResponse>();
+        
+            DecoreView.AddView(new TEditorView(MainActivity, html, autoFocusInput, toolbarBuilder, toolbarBuilderOnClick));
 
-            var tActivity = new Intent(Application.Context, typeof(TEditorActivity));
-            ToolbarBuilder = toolbarBuilder;
-            if (ToolbarBuilder == null)
-                ToolbarBuilder = new ToolbarBuilder();
-
-            ToolbarBuilderOnClick = toolbarBuilderOnClick;
-
-            tActivity.PutExtra("HTMLString", html);
-            tActivity.PutExtra("AutoFocusInput", autoFocusInput);
-            tActivity.SetFlags(ActivityFlags.NewTask);
-            TEditorActivity.SetOutput = (res, resStr) =>
+            TEditorView.SetOutput = (res, resStr) =>
             {
-                TEditorActivity.SetOutput = null;
+                TEditorView.SetOutput = null;
                 if (res)
                 {
-                    result.SetResult(new TEditorResponse() { IsSave = true, HTML = resStr});
+                    result.SetResult(new TEditorResponse() { IsSave = true, HTML = resStr });
                 }
                 else
                     result.SetResult(new TEditorResponse() { IsSave = false, HTML = string.Empty });
             };
-            Application.Context.StartActivity(tActivity);
+
             return result.Task;
         }
 
-        public override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            ToolbarBuilder = null;
-        }
+
     }
 }

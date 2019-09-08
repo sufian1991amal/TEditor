@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\TEditorWebView.cs" />
-    <Compile Include="Controls\TEditorActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Controls\LinearLayoutDetectsSoftKeyboard.cs" />
     <Compile Include="TEditorImplementation.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="ColorPicker\ColorUtils.cs" />
     <Compile Include="ColorPicker\ColorPickerDialog.cs" />
     <Compile Include="ColorPicker\AlphaPatternDrawable.cs" />
+    <Compile Include="TEditorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -141,6 +141,9 @@
     <AndroidResource Include="Resources\drawable\hashtag.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\backbutton.png" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>

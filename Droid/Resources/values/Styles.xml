@@ -2,8 +2,10 @@
 <resources>
 	<style name="Theme.AppCompat.NoActionBar.FullScreen" parent="@style/Theme.AppCompat">
 		<item name="windowNoTitle">true</item>
-		<item name="windowActionBar">false</item>
+    <item name="android:statusBarColor">#084F97</item>
+    <item name="windowActionBar">false</item>
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowTranslucentStatus">true</item>
 	</style>
 </resources>
